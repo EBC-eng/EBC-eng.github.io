@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ellis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Syne:wght@400;800&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #C8860A;
+    --amber-dim: #7a5106;
+    --bg: #080808;
+    --fg: #e8e2d6;
+    --fg-dim: #7a756b;
+    --grid: rgba(200, 134, 10, 0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+  }
+
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--fg);
+  }
+
+  /* ── PROJECT ── */
+  .project {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .project.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* title + summary above images */
+  .project-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 1rem;
+  }
+
+  .project-index {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-dim);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+  }
+
+  .project-summary {
+    font-size: 0.93rem;
+    color: var(--fg-dim);
+    line-height: 1.9;
+  }
+
+  /* ── IMAGES ── */
+  .images-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .images-1 {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .img-frame {
+    background: #0d0d0d;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+  }
+
+  .img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .project-header { grid-template-columns: 1fr; gap: 1rem; }
+    .images-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ellis</h1>
+</header>
+
+<!-- 01 -->
+<div class="project">
+  <div class="project-header">
+    <div>
+      <div class="project-index">01</div>
+      <h2 class="project-title">Planetary Gearbox</h2>
+    </div>
+    <p class="project-summary">
+      A parametric planetary gearbox designed as a drive component for a 1-DOF foot prosthesis project.
+      Delivers a 6:1 torque increase through a fully mate-driven assembly — geometry updates automatically
+      when gear parameters change. Built with 2 display states and 3 configurations. Modelled in SOLIDWORKS,
+      animated via Motion Study, compiled and exported through SOLIDWORKS Visualize, final output rendered in Blender.
+    </p>
+  </div>
+  <div class="images-2">
+    <div class="img-frame">
+      <img src="Mechanical_Gearbox_Final_93.gif" alt="Planetary gearbox exploded view">
+    </div>
+    <div class="img-frame">
+      <img src="Mechanical_Gearbox_Assembled_Final2.gif" alt="Planetary gearbox assembled">
+    </div>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="project">
+  <div class="project-header">
+    <div>
+      <div class="project-index">02</div>
+      <h2 class="project-title">Wheels & Battery</h2>
+    </div>
+    <p class="project-summary">
+      A pair of personal Blender projects focused on material development and rendering technique.
+      The wheels were later printed on a Stratasys J850 multi-material PolyJet printer.
+      Both models were produced as promotional material for the Engineering Society.
+      Completed in 3 days as a focused Blender learning sprint.
+    </p>
+  </div>
+  <div class="images-2">
+    <div class="img-frame">
+      <img src="Best_wheel_transparent.png" alt="Wheels render" style="background:#000;">
+    </div>
+    <div class="img-frame">
+      <img src="Battery.png" alt="Battery render" style="background:#000;">
+    </div>
+  </div>
+</div>
+
+<!-- 03 -->
+<div class="project">
+  <div class="project-header">
+    <div>
+      <div class="project-index">03</div>
+      <h2 class="project-title">TF2 Teleporter</h2>
+    </div>
+    <p class="project-summary">
+      An early assembly project completed in early 2023, as a SOLIDWORKS Visualize learning exercise and
+      assembly practice. First use of advanced SOLIDWORKS assembly tools. Included here as a baseline —
+      the render quality has held up better than expected. Everything past this point was built on the
+      foundation learned from this project.
+    </p>
+  </div>
+  <div class="images-1">
+    <div class="img-frame">
+      <img src="large__1_.png" alt="TF2 Teleporter render">
+    </div>
+  </div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.project').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
